@@ -37,7 +37,9 @@ $ python main.py
 🌍 Welcome to Trip Planner! Let's plan your perfect trip.
 
 Enter your starting city: Mumbai
+
 Enter your destination: Goa
+
 Number of travelers: 2
 
 Select budget range:
@@ -45,8 +47,11 @@ Select budget range:
 2. Mid (Balanced options)
 3. High (Premium options)
 Enter choice (1-3): 2
+
 Enter total budget (INR): 50000
+
 Trip duration (e.g., '5 days'): 4 days
+
 Your interests (comma-separated): beaches, food, adventure
 
 🚀 Planning your trip...
