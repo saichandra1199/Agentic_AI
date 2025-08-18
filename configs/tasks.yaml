@@ -1,0 +1,120 @@
+
+task_select_city:
+  agent: city_selection_agent
+  description: |
+    Analyze and select the best city for a trip from {start_location} to {destination} 
+    based on the following criteria:
+    - Duration: {duration} ({num_days} days)
+    - Budget Range: {budget_range} (₹{budget} total for {num_people} people)
+    - Interests: {interests}
+    
+    Consider factors like weather, local events, and accessibility.
+  expected_output: "A detailed recommendation for the destination city with justification based on the given criteria."
+
+task_book_hotel:
+  agent: hotel_booking_agent
+  description: |
+    Find and book appropriate accommodations in {destination} with these requirements:
+    - Number of people: {num_people}
+    - Total Budget: ₹{accommodation_budget} (₹{accommodation_pp} per person)
+    - Budget Level: {budget_range}
+    - Duration: {duration} ({num_days} days)
+    
+    For 'low' budget: Focus on hostels, budget hotels, or homestays
+    For 'mid' budget: Consider 3-4 star hotels or premium homestays
+    For 'high' budget: Look for 5-star hotels or luxury resorts
+    
+    Include breakfast if possible within budget.
+  expected_output: |
+    A detailed hotel booking confirmation including:
+    - Hotel name and star rating
+    - Total cost and cost per person
+    - Booking reference number
+    - Cancellation policy
+    - Amenities included
+
+task_arrange_transport:
+  agent: transport_agent
+  description: |
+    Arrange transportation from {start_location} to {destination} with these requirements:
+    - Number of people: {num_people}
+    - Total Budget: ₹{transport_budget} (₹{transport_pp} per person)
+    - Budget Level: {budget_range}
+    - Duration: {duration} ({num_days} days)
+    
+    For 'low' budget: Prioritize trains and buses
+    For 'mid' budget: Consider budget flights or AC train compartments
+    For 'high' budget: Look for business class flights or private transfers
+    
+    Include return journey options.
+  expected_output: |
+    A detailed transportation plan including:
+    - Mode of transport
+    - Departure and arrival times
+    - Duration of journey
+    - Cost per person and total cost
+    - Booking reference/link
+
+task_plan_activities:
+  agent: event_booking_agent
+  description: |
+    Plan activities and experiences in {destination} based on these interests: {interests}
+    - Total Budget: ₹{activities_budget} (₹{activities_pp} per person)
+    - Budget Level: {budget_range}
+    - Duration: {duration} ({num_days} days)
+    - Group size: {num_people} people
+    
+    Include a mix of free/cheap and paid activities based on the budget level.
+    Consider local events, tours, and experiences that match the interests.
+  expected_output: |
+    A list of recommended activities including:
+    - Activity name and description
+    - Duration and timing
+    - Cost per person
+    - Booking information if needed
+    - Any special requirements
+
+task_plan_meals:
+  agent: food_agent
+  description: |
+    Plan meals for {num_people} people in {destination} with these requirements:
+    - Total Budget: ₹{food_budget} (₹{food_pp_pd} per person per day)
+    - Budget Level: {budget_range}
+    - Duration: {duration} ({num_days} days)
+    - Interests: {interests} (consider food preferences)
+    
+    Include a mix of local cuisine and familiar options.
+    For 'low' budget: Focus on street food and local eateries
+    For 'high' budget: Include fine dining experiences
+  expected_output: |
+    A meal plan including:
+    - Recommended restaurants/eateries
+    - Type of cuisine
+    - Approximate cost per meal
+    - Any dietary considerations
+    - Reservation recommendations if needed
+
+task_generate_itinerary:
+  agent: itinerary_planner_agent
+  description: |
+    Create a comprehensive {duration} ({num_days} days) itinerary for a trip from {start_location} to {destination}.
+    
+    Include all the following in a well-organized markdown format:
+    - Daily schedule with timings
+    - Accommodation details (Budget: ₹{accommodation_budget})
+    - Transportation arrangements (Budget: ₹{transport_budget})
+    - Activities and sightseeing (Budget: ₹{activities_budget})
+    - Meal plans (Budget: ₹{food_budget})
+    - Budget breakdown by category
+    - Emergency contacts and important information
+    
+    The itinerary should be realistic, accounting for travel time between locations,
+    meal times, and adequate rest. Highlight any special experiences or must-see attractions.
+  expected_output: |
+    A detailed, day-by-day itinerary in markdown format that includes:
+    - Clear section headers for each day
+    - Time-based schedule
+    - Location details and addresses
+    - Estimated costs
+    - Booking references where applicable
+    - Maps or directions if available
